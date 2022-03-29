@@ -16,31 +16,34 @@
         android:hint="Päivämäärä"
         android:inputType="date"
         android:textColor="#F6F4F4"
-        tools:layout_editor_absoluteX="152dp"
-        tools:layout_editor_absoluteY="206dp"
+        tools:layout_editor_absoluteX="185dp"
+        tools:layout_editor_absoluteY="153dp"
         tools:textColorHint="#9F9C9C" />
 
     <EditText
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#2B2929"
+        android:background="#393737"
         android:ems="10"
         android:hint="Elokuvan nimi"
         android:inputType="textPersonName"
         android:textColor="#FFFFFF"
-        tools:layout_editor_absoluteX="152dp"
-        tools:layout_editor_absoluteY="269dp"
+        tools:layout_editor_absoluteX="185dp"
+        tools:layout_editor_absoluteY="197dp"
         tools:textColorHint="#4E4D4D" />
 
     <TextView
         android:id="@+id/screeningTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="56dp"
         android:text="Esityksen alkamisaika"
         android:textColor="#FFFFFF"
-        tools:layout_editor_absoluteX="188dp"
-        tools:layout_editor_absoluteY="55dp" />
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.582" />
 
     <EditText
         android:id="@+id/startTime"
@@ -50,7 +53,7 @@
         android:ems="10"
         android:hint="00:00"
         android:inputType="time"
-        tools:layout_editor_absoluteX="152dp"
+        tools:layout_editor_absoluteX="185dp"
         tools:layout_editor_absoluteY="98dp"
         tools:textColorHint="#807D7D" />
 
@@ -63,7 +66,29 @@
         android:hint="23:59"
         android:inputType="time"
         android:textColorHint="#434343"
-        tools:layout_editor_absoluteX="280dp"
+        tools:layout_editor_absoluteX="306dp"
         tools:layout_editor_absoluteY="98dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="286dp"
+        tools:layout_editor_absoluteY="98dp" />
+
+    <Spinner
+        android:id="@+id/theaters"
+        android:layout_width="179dp"
+        android:layout_height="51dp"
+        android:spinnerMode="dialog"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/screeningTime"
+        app:layout_constraintHorizontal_bias="0.168"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.055" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
