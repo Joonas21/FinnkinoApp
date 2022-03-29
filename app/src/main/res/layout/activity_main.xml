@@ -11,80 +11,75 @@
         android:id="@+id/date"
         android:layout_width="181dp"
         android:layout_height="28dp"
-        android:background="#272626"
+        android:background="@layout/rounded_borders"
         android:ems="10"
         android:hint="Päivämäärä"
         android:inputType="date"
         android:textColor="#F6F4F4"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.93"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.22000003"
-        tools:textColorHint="#9F9C9C" />
+        tools:layout_editor_absoluteX="214dp"
+        tools:layout_editor_absoluteY="149dp"
+        tools:textColorHint="#9C9F9C9C" />
 
     <EditText
         android:id="@+id/name"
         android:layout_width="181dp"
         android:layout_height="25dp"
-        android:background="#393737"
+        android:background="@layout/rounded_borders"
         android:ems="10"
         android:hint="Elokuvan nimi"
         android:inputType="textPersonName"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.93"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.26999998"
-        tools:textColorHint="#4E4D4D" />
+        tools:layout_editor_absoluteX="214dp"
+        tools:layout_editor_absoluteY="196dp"
+        tools:textColorHint="#9C9F9C9C" />
 
     <TextView
         android:id="@+id/screeningTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="56dp"
         android:text="Esityksen alkamisaika"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.88"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.07999998" />
+        app:layout_constraintVertical_bias="0.582" />
 
     <EditText
         android:id="@+id/startTime"
         android:layout_width="64dp"
-        android:layout_height="38dp"
-        android:background="#4E4C4C"
+        android:layout_height="39dp"
+        android:background="@layout/rounded_borders"
         android:ems="10"
         android:hint="00:00"
         android:inputType="time"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.65"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13"
-        tools:textColorHint="#807D7D" />
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        tools:layout_editor_absoluteX="226dp"
+        tools:layout_editor_absoluteY="95dp"
+        tools:textColorHint="#9C9F9C9C" />
 
     <EditText
         android:id="@+id/endTime"
-        android:layout_width="64dp"
-        android:layout_height="38dp"
-        android:background="#2B2A2A"
+        android:layout_width="65dp"
+        android:layout_height="37dp"
+        android:background="@layout/rounded_borders"
         android:ems="10"
         android:hint="23:59"
         android:inputType="time"
-        android:textColorHint="#434343"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.93"
-        app:layout_constraintStart_toStartOf="@+id/movies"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13" />
+        android:textColorHint="#9C9F9C9C"
+        tools:layout_editor_absoluteX="330dp"
+        tools:layout_editor_absoluteY="95dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="306dp"
+        tools:layout_editor_absoluteY="98dp" />
 
     <Spinner
         android:id="@+id/theaters"
@@ -92,46 +87,28 @@
         android:layout_height="51dp"
         android:spinnerMode="dialog"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.03"
-        app:layout_constraintStart_toStartOf="@+id/movies"
+        app:layout_constraintEnd_toStartOf="@+id/screeningTime"
+        app:layout_constraintHorizontal_bias="0.168"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.01999998" />
+        app:layout_constraintVertical_bias="0.055" />
 
     <Button
         android:id="@+id/search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#FFEB3B"
-        android:backgroundTint="@color/teal_700"
+        android:background="@layout/rounded_borders"
         android:text="HAE"
         android:textColor="#040404"
-        app:iconTint="#F3EFEF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.38" />
+        tools:layout_editor_absoluteX="268dp"
+        tools:layout_editor_absoluteY="248dp" />
 
     <ListView
         android:id="@+id/movies"
         android:layout_width="182dp"
         android:layout_height="461dp"
-        android:background="#474545"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.017"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="-"
-            android:textColor="#FFFFFF"
-            android:textSize="24sp" />
-    </ListView>
+        android:background="@layout/rounded_borders"
+        tools:layout_editor_absoluteX="6dp"
+        tools:layout_editor_absoluteY="106dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
