@@ -78,11 +78,11 @@
         android:text="-"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
-        tools:layout_editor_absoluteX="306dp"
-        tools:layout_editor_absoluteY="98dp" />
+        tools:layout_editor_absoluteX="307dp"
+        tools:layout_editor_absoluteY="102dp" />
 
     <Spinner
-        android:id="@+id/theaters"
+        android:id="@+id/theater"
         android:layout_width="179dp"
         android:layout_height="51dp"
         android:spinnerMode="dialog"
@@ -108,7 +108,7 @@
         android:layout_width="182dp"
         android:layout_height="461dp"
         android:background="@layout/rounded_borders"
-        tools:layout_editor_absoluteX="6dp"
-        tools:layout_editor_absoluteY="106dp" />
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="98dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
