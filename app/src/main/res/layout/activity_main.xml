@@ -16,8 +16,12 @@
         android:hint="Päivämäärä"
         android:inputType="date"
         android:textColor="#F6F4F4"
-        tools:layout_editor_absoluteX="214dp"
-        tools:layout_editor_absoluteY="149dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.92"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.22000003"
         tools:textColorHint="#9C9F9C9C" />
 
     <EditText
@@ -29,21 +33,26 @@
         android:hint="Elokuvan nimi"
         android:inputType="textPersonName"
         android:textColor="#FFFFFF"
-        tools:layout_editor_absoluteX="214dp"
-        tools:layout_editor_absoluteY="196dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.92"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.29000002"
         tools:textColorHint="#9C9F9C9C" />
 
     <TextView
         android:id="@+id/screeningTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="56dp"
         android:text="Esityksen alkamisaika"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.88"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.582" />
+        app:layout_constraintVertical_bias="0.06999999" />
 
     <EditText
         android:id="@+id/startTime"
@@ -55,8 +64,12 @@
         android:inputType="time"
         android:paddingLeft="4dp"
         android:paddingRight="4dp"
-        tools:layout_editor_absoluteX="226dp"
-        tools:layout_editor_absoluteY="95dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.65"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.13"
         tools:textColorHint="#9C9F9C9C" />
 
     <EditText
@@ -68,8 +81,12 @@
         android:hint="23:59"
         android:inputType="time"
         android:textColorHint="#9C9F9C9C"
-        tools:layout_editor_absoluteX="330dp"
-        tools:layout_editor_absoluteY="95dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.94"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.13" />
 
     <TextView
         android:id="@+id/textView"
@@ -78,8 +95,12 @@
         android:text="-"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
-        tools:layout_editor_absoluteX="306dp"
-        tools:layout_editor_absoluteY="98dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.13" />
 
     <Spinner
         android:id="@+id/theaters"
@@ -100,15 +121,22 @@
         android:background="@layout/rounded_borders"
         android:text="HAE"
         android:textColor="#040404"
-        tools:layout_editor_absoluteX="268dp"
-        tools:layout_editor_absoluteY="248dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.79"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.39" />
 
     <ListView
         android:id="@+id/movies"
         android:layout_width="182dp"
         android:layout_height="461dp"
         android:background="@layout/rounded_borders"
-        tools:layout_editor_absoluteX="6dp"
-        tools:layout_editor_absoluteY="106dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.04"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
