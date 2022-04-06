@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import static java.lang.Integer.parseInt;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -119,14 +121,14 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
             String showEndHours = showEnd[0];
             String showEndMins = showEnd[1];
 
-            int show_startTime = Integer.parseInt(showStartHours + showStartMins);
-            int show_endTime = Integer.parseInt(showEndHours + showEndMins);
+            int show_startTime = parseInt(showStartHours + showStartMins);
+            int show_endTime = parseInt(showEndHours + showEndMins);
 
             if (curr.getTitle().toLowerCase().contains(showName.toLowerCase()))
             {
-                if (Integer.parseInt(parsedStartTime) <= show_startTime)
+                if (parseInt(parsedStartTime) <= show_startTime)
                 {
-                    if (Integer.parseInt(parsedEndTime) >= show_endTime)
+                    if (parseInt(parsedEndTime) >= show_endTime)
                     {
                         String startingtime = showStartHours + ":" + showStartMins + ":00";
                         String endingtime = showEndHours + ":" + showEndMins + ":00";
@@ -176,6 +178,8 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
         int arrayID = theaterSpinner.getSelectedItemPosition();
         id_single = theater_array.get(arrayID).getID();
 
+        System.out.println("  ** id_single : " + id_single);
+
         if (id_single.equals("1029"))
         {
             id.add(1012);
@@ -190,20 +194,25 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
             id.add(1022);
         }
 
-        if(id.equals("1029") && !name.matches(""))
+        if(id_single.equals("1029") && !name.matches(""))
         {
             status = false;
         }
 
-        if(!id.equals("1029"))
+
+        if(!id_single.equals("1029"))
         {
+            id.add(Integer.parseInt(id_single));
             status = true;
+
         } else if (date.matches(""))
         {
             Date dateNow = new Date();
             SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
             date = sdf.format(dateNow);
         }
+
+        System.out.println("  xy program at end of getShow()");
 
         new ReaderXML_Shows(this, date, id, startTime, endTime, status, name).execute();
     }
@@ -285,22 +294,40 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
         @Override
         protected ArrayList<Show> doInBackground(Void... voids)
         {
+
+            System.out.println("  yx program at start of ReaderXML_Shows()");
+
+            for (Integer i : id)
+            {
+                System.out.println(" - element in id: " + i);
+            }
+
+
             ArrayList<Show> show_array = new ArrayList<>();
 
             try
             {
                 for (Integer id_single : id)
                 {
-                    String urlString = "http://www.finnkino.fi/xml/Schedule/?area=" + id_single + "&dt=" + date;
+                    System.out.println("  !! at start of for-loop");
+
+                    String urlString = "https://www.finnkino.fi/xml/Schedule/?area=" + id_single + "&dt=" + date;
+                    //String urlString = "https://www.finnkino.fi/xml/Schedule/?area=1015&dt=" + date;
                     DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
                     Document doc = builder.parse(urlString);
                     doc.getDocumentElement().normalize();
 
+                    System.out.println("  -- searching for URL: " + urlString);
+
                     NodeList nList = doc.getElementsByTagName("Show");
+
+                    System.out.println("  << nodeList length :" + nList.getLength());
 
                     for (int j = 0; j < nList.getLength(); j++)
                     {
                         Node node = nList.item(j);
+
+                        //System.out.println("  ¤¤ current node : " + node);
 
                         if (node.getNodeType() == Node.ELEMENT_NODE)
                         {
