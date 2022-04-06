@@ -285,7 +285,7 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
         @Override
         protected ArrayList<Show> doInBackground(Void... voids)
         {
-            ArrayList<Show> showArray = new ArrayList<>();
+            ArrayList<Show> show_array = new ArrayList<>();
 
             try
             {
