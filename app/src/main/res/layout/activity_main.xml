@@ -9,11 +9,11 @@
 
     <EditText
         android:id="@+id/date"
-        android:layout_width="181dp"
-        android:layout_height="28dp"
+        android:layout_width="190dp"
+        android:layout_height="29dp"
         android:background="@layout/rounded_borders"
         android:ems="10"
-        android:hint="Päivämäärä"
+        android:hint="Päivämäärä (pp.kk.vvvv)"
         android:inputType="date"
         android:textColor="#F6F4F4"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -26,8 +26,8 @@
 
     <EditText
         android:id="@+id/name"
-        android:layout_width="181dp"
-        android:layout_height="25dp"
+        android:layout_width="190dp"
+        android:layout_height="28dp"
         android:background="@layout/rounded_borders"
         android:ems="10"
         android:hint="Elokuvan nimi"
