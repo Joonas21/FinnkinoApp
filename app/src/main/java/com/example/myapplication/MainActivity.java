@@ -9,6 +9,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -141,6 +142,14 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
 
         ArrayAdapter<Show> adapter = new ArrayAdapter<Show>(this, R.layout.list_text, tempArr);
         movies.setAdapter(adapter);
+        movies.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                System.out.println("DEBUG");
+            }
+        });
+        movies.setAdapter(adapter);
+
 
     }
 
