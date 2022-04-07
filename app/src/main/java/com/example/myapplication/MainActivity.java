@@ -4,6 +4,7 @@ import static java.lang.Integer.parseInt;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -145,10 +146,14 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
         movies.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                System.out.println("DEBUG");
+                System.out.println(i);
+                Show a = show_array.get(i);
+                System.out.println(a.getTitle());
+                Intent intent = new Intent( MainActivity.this, Review.class );
+                startActivity(intent);
             }
         });
-        movies.setAdapter(adapter);
+        //movies.setAdapter(adapter);
 
 
     }
