@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
-public class Review
+import androidx.appcompat.app.AppCompatActivity;
+
+public class Review extends AppCompatActivity
 {
     // constructor
     public Review() {}
