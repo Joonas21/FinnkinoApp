@@ -149,7 +149,12 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
 
                 System.out.println(i);
                 Show a = show_array.get(i);
-                System.out.println(a.getTitle());
+
+                String title = a.getTitle();
+                System.out.println(title);
+
+                System.out.println("  ** class of a: " + a.getClass());
+                System.out.println("  ** class of a.getTitle(): " + title.getClass());
 
                 /* https://stackoverflow.com/questions/2091465/how-do-i-pass-data-between-activities-in-android-application */
 
@@ -159,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
 
                 System.out.println(" == after creating new intent");
 
-                intent.putExtra("title", a.getTitle());
+                intent.putExtra("title", title);
 
                 System.out.println(" == after creating extras");
 

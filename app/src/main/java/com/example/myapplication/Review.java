@@ -19,7 +19,6 @@ public class Review extends AppCompatActivity {
     ListView reviewsList;
     TextView movie;
 
-    String extras = getIntent().getStringExtra("title");
 
     public Review() {
     }
@@ -30,6 +29,10 @@ public class Review extends AppCompatActivity {
 
         setContentView(R.layout.rating_layout);
 
+
+        Bundle extras = getIntent().getExtras();
+
+
         rate = (Button) findViewById(R.id.rate);
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
         nickname = (EditText) findViewById(R.id.nickname);
@@ -38,20 +41,16 @@ public class Review extends AppCompatActivity {
         reviewsList = (ListView) findViewById(R.id.reviewsList);
         movie = (TextView) findViewById(R.id.movie);
 
-        movie.setText("leffa");
+        //movie.setText("leffa");
 
-        /*
+
         if (extras != null)
         {
-            System.out.println("  == extras: " + extras);
+            System.out.println("  == extras: " + extras.getString("title"));
+            movie.setText(extras.getString("title"));
         } else
         {
             System.out.println(" == ERR: empty extras");
-        }*/
-
-        if (extras != null)
-        {
-            movie.setText(extras);
         }
 
 
