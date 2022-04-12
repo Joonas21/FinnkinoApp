@@ -19,6 +19,7 @@ public class Review extends AppCompatActivity {
     ListView reviewsList;
     TextView movie;
 
+    String extras = getIntent().getStringExtra("title");
 
     public Review() {
     }
@@ -36,6 +37,23 @@ public class Review extends AppCompatActivity {
         review = (EditText) findViewById(R.id.review);
         reviewsList = (ListView) findViewById(R.id.reviewsList);
         movie = (TextView) findViewById(R.id.movie);
+
+        movie.setText("leffa");
+
+        /*
+        if (extras != null)
+        {
+            System.out.println("  == extras: " + extras);
+        } else
+        {
+            System.out.println(" == ERR: empty extras");
+        }*/
+
+        if (extras != null)
+        {
+            movie.setText(extras);
+        }
+
 
         // code here
 

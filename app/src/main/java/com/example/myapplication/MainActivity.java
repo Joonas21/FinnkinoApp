@@ -146,10 +146,23 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
         movies.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
                 System.out.println(i);
                 Show a = show_array.get(i);
                 System.out.println(a.getTitle());
+
+                /* https://stackoverflow.com/questions/2091465/how-do-i-pass-data-between-activities-in-android-application */
+
+                System.out.println(" == before creating new intent");
+
                 Intent intent = new Intent( MainActivity.this, Review.class );
+
+                System.out.println(" == after creating new intent");
+
+                intent.putExtra("title", a.getTitle());
+
+                System.out.println(" == after creating extras");
+
                 startActivity(intent);
             }
         });
