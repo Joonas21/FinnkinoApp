@@ -65,7 +65,7 @@
         app:layout_constraintVertical_bias="0.62" />
 
     <EditText
-        android:id="@+id/dateofrating"
+        android:id="@+id/dateOfRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@layout/rounded_borders"
@@ -106,7 +106,7 @@
         app:layout_constraintVertical_bias="0.77" />
 
     <ListView
-        android:id="@+id/reviews"
+        android:id="@+id/reviewsList"
         android:layout_width="387dp"
         android:layout_height="224dp"
         android:background="@layout/rounded_borders"
