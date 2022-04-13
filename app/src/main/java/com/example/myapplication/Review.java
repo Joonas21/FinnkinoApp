@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -8,6 +10,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
 
 public class Review extends AppCompatActivity {
 
@@ -18,6 +22,8 @@ public class Review extends AppCompatActivity {
     EditText review;
     ListView reviewsList;
     TextView movie;
+
+    ArrayList<Individual_Movie_Review> l = new ArrayList<>();
 
 
     public Review() {
@@ -53,8 +59,19 @@ public class Review extends AppCompatActivity {
             System.out.println(" == ERR: empty extras");
         }
 
+        rate.setOnClickListener(new View.OnClickListener()
+            {
+            @Override
+            public void onClick (View view)
+            {
+                Individual_Movie_Review review = new Individual_Movie_Review(ratingBar.getRating(), nickname.getText().toString());
 
-        // code here
+                review.commentlist.add(nickname.getText().toString() + ": " + ratingBar.getRating());
+                System.out.println(review.commentlist.get(0));
+            }
+        });
+
 
     }
+
 }
