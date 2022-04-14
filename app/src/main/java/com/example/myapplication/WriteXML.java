@@ -17,14 +17,13 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 
-
+// SOURCE FOR CLASS
+/* https://mkyong.com/java/how-to-create-xml-file-in-java-dom/ */
 
 
 public class WriteXML
 {
-
     public WriteXML() {}
-
 
     public void writeXml() throws ParserConfigurationException, TransformerException
     {

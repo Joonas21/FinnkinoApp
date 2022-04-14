@@ -147,26 +147,27 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                System.out.println(i);
-                Show a = show_array.get(i);
+                //System.out.println(i);
+                //Show a = show_array.get(i);
+                Show a = tempArr.get(i);
 
                 String title = a.getTitle();
-                System.out.println(title);
+                System.out.println(" . title = " + title);
 
-                System.out.println("  ** class of a: " + a.getClass());
-                System.out.println("  ** class of a.getTitle(): " + title.getClass());
+                /* System.out.println("  ** class of a: " + a.getClass());
+                 System.out.println("  ** class of a.getTitle(): " + title.getClass()); */
 
                 /* https://stackoverflow.com/questions/2091465/how-do-i-pass-data-between-activities-in-android-application */
 
-                System.out.println(" == before creating new intent");
+                //System.out.println(" == before creating new intent");
 
                 Intent intent = new Intent( MainActivity.this, Review.class );
 
-                System.out.println(" == after creating new intent");
+                //System.out.println(" == after creating new intent");
 
                 intent.putExtra("title", title);
 
-                System.out.println(" == after creating extras");
+                //System.out.println(" == after creating extras");
 
                 startActivity(intent);
             }
@@ -178,10 +179,10 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
 
     public void getShow(View v)
     {
-        Context context = getApplicationContext();
+        //Context context = getApplicationContext();
         String id_single;
         ArrayList<Integer> id = new ArrayList<>();
-        Toast toast;
+        //Toast toast;
         String date = dateInput.getText().toString();
         String startTime;
         String endTime;
@@ -285,7 +286,6 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
             } catch (SAXException e) { e.printStackTrace();
             } catch (ParserConfigurationException e) { e.printStackTrace(); }
 
-
             return theater_array;
         }
 
@@ -327,7 +327,7 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
         protected ArrayList<Show> doInBackground(Void... voids)
         {
 
-            System.out.println("  yx program at start of ReaderXML_Shows()");
+            //System.out.println("  yx program at start of ReaderXML_Shows()");
 
             for (Integer i : id)
             {
@@ -372,6 +372,7 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
                             String fullEndDate = (element.getElementsByTagName("dttmShowEnd").item(0).getTextContent());
                             String theater = (element.getElementsByTagName("Theatre").item(0).getTextContent());
                             String[] endTime = fullEndDate.split(deliminator);
+                            System.out.println(" :: DEBUG, title = " + title);
                             show_array.add(new Show(title, id, startTime[1], endTime[1], theater, status));
                         }
                     }

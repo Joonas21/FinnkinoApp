@@ -13,6 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+
 public class Review extends AppCompatActivity {
 
     Button rate;
@@ -47,20 +50,31 @@ public class Review extends AppCompatActivity {
         reviewsList = (ListView) findViewById(R.id.reviewsList);
         movie = (TextView) findViewById(R.id.movie);
 
-        //movie.setText("leffa");
-
 
         if (extras != null)
         {
-            System.out.println("  == extras: " + extras.getString("title"));
+            System.out.println("  == extras, title: " + extras.getString("title"));
             movie.setText(extras.getString("title"));
         } else
         {
             System.out.println(" == ERR: empty extras");
         }
 
+        WriteXML write = new WriteXML();
+
+        /*
+        try {
+            write.writeXml();
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (TransformerException e) {
+            e.printStackTrace();
+        }
+        */
+
+
         rate.setOnClickListener(new View.OnClickListener()
-            {
+        {
             @Override
             public void onClick (View view)
             {
@@ -68,6 +82,16 @@ public class Review extends AppCompatActivity {
 
                 review.commentlist.add(nickname.getText().toString() + ": " + ratingBar.getRating());
                 System.out.println(review.commentlist.get(0));
+
+                try
+                {
+                    write.writeXml();
+                } catch (ParserConfigurationException e) {
+                    e.printStackTrace();
+                } catch (TransformerException e) {
+                    e.printStackTrace();
+                }
+
             }
         });
 
