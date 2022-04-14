@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<element>
+    <child title="movieTitle">
+        <review>
+            <nickname user="userName">Miika</nickname>
+            <rating stars="starsAmount">5</rating>
+        </review>
+    </child>
+</element>

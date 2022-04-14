@@ -227,11 +227,12 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
             id.add(1022);
         }
 
+        /*
         if(id_single.equals("1029") && !name.matches(""))
         {
             status = false;
         }
-
+    */
 
         if(!id_single.equals("1029"))
         {
@@ -372,7 +373,7 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
                             String fullEndDate = (element.getElementsByTagName("dttmShowEnd").item(0).getTextContent());
                             String theater = (element.getElementsByTagName("Theatre").item(0).getTextContent());
                             String[] endTime = fullEndDate.split(deliminator);
-                            System.out.println(" :: DEBUG, title = " + title);
+                            //System.out.println(" :: DEBUG, title = " + title);
                             show_array.add(new Show(title, id, startTime[1], endTime[1], theater, status));
                         }
                     }

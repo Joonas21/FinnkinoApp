@@ -28,19 +28,19 @@ public class Show
         endTime = end_time[0] + ":" + end_time[1];
     }
 
-/*
+
     @Override
     public String toString()
     {
         if (status == false)
         {
-            return (theater + "\n" + title + ":\n" + startTime + " - " + endTime);
+            return (/*theater + "\n" + */title + ":\n" + startTime + " - " + endTime);
         } else
         {
-            return (theater + "\n" + title + ":\n" + startTime + " - " + endTime);
+            return (/*theater + "\n" + */title + ":\n" + startTime + " - " + endTime);
         }
     }
-*/
+
     public String getTitle() { return title; }
     public String getID() { return id; }
     public String getStartTime() { return startTime; }

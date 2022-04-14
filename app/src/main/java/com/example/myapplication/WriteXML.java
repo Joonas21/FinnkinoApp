@@ -4,6 +4,7 @@ import org.w3c.dom.CDATASection;
 import org.w3c.dom.Comment;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -11,10 +12,16 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.StringReader;
+
+
+import org.xml.sax.InputSource;
 
 
 // SOURCE FOR CLASS
@@ -24,6 +31,40 @@ import java.io.OutputStream;
 public class WriteXML
 {
     public WriteXML() {}
+
+
+
+    public void readXML(String filename)
+    {
+        Document dom;
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+
+        try
+        {
+            DocumentBuilder db = dbf.newDocumentBuilder();
+
+            /*
+            FileInputStream fis = new FileInputStream(filename);
+            InputSource is = new InputSource(fis);
+            Document doc = builder.parse(is); */
+
+
+            dom = db.parse(new InputSource(new StringReader(filename)));
+
+            // get the first element
+            Element element = dom.getDocumentElement();
+
+            // get all child nodes
+            NodeList nodes = element.getChildNodes();
+
+            // print the text content of each child
+            for (int i = 0; i < nodes.getLength(); i++) {
+                System.out.println("" + nodes.item(i).getTextContent());
+            }
+        } catch (Exception ex) { ex.printStackTrace(); }
+    }
+
+
 
     public void writeXml() throws ParserConfigurationException, TransformerException
     {

@@ -60,7 +60,11 @@ public class Review extends AppCompatActivity {
             System.out.println(" == ERR: empty extras");
         }
 
-        WriteXML write = new WriteXML();
+        WriteXML xml = new WriteXML();
+
+        xml.readXML("reviews.xml");
+
+        // xml.writeXML();
 
         /*
         try {
@@ -83,14 +87,6 @@ public class Review extends AppCompatActivity {
                 review.commentlist.add(nickname.getText().toString() + ": " + ratingBar.getRating());
                 System.out.println(review.commentlist.get(0));
 
-                try
-                {
-                    write.writeXml();
-                } catch (ParserConfigurationException e) {
-                    e.printStackTrace();
-                } catch (TransformerException e) {
-                    e.printStackTrace();
-                }
 
             }
         });
