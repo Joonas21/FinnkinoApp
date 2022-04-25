@@ -114,6 +114,8 @@
         android:layout_width="387dp"
         android:layout_height="224dp"
         android:background="@layout/rounded_borders"
+        android:cacheColorHint="#FFFFFF"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

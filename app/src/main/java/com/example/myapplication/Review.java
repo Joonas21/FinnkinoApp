@@ -1,8 +1,10 @@
 package com.example.myapplication;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -28,6 +30,7 @@ public class Review extends AppCompatActivity {
 
     ArrayList<Individual_Movie_Review> l = new ArrayList<>();
 
+    Context context;
 
     public Review() {
     }
@@ -50,9 +53,11 @@ public class Review extends AppCompatActivity {
         reviewsList = (ListView) findViewById(R.id.reviewsList);
         movie = (TextView) findViewById(R.id.movie);
 
+        String title = "";
 
         if (extras != null)
         {
+            title  = title + extras.getString("title");
             System.out.println("  == extras, title: " + extras.getString("title"));
             movie.setText(extras.getString("title"));
         } else
@@ -60,21 +65,29 @@ public class Review extends AppCompatActivity {
             System.out.println(" == ERR: empty extras");
         }
 
-        WriteXML xml = new WriteXML();
+        context = getApplicationContext();
 
-        xml.readXML("reviews.xml");
+        ArrayList temp;
 
-        // xml.writeXML();
 
-        /*
-        try {
-            write.writeXml();
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (TransformerException e) {
-            e.printStackTrace();
-        }
-        */
+        HandleXML xml = new HandleXML(context);
+
+        //temp = xml.readXML("movieTitle");
+        //temp = xml.readXML("anotherOne");
+
+
+        temp = xml.readXML(title);
+
+        if (temp.size() == 0) { temp.add("No reviews yet."); }
+
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, temp);
+
+        reviewsList.setAdapter(adapter);
+
+
+        String finalTitle = title;
+        String user = nickname.getText().toString();
+        Float rating = ratingBar.getRating();
 
 
         rate.setOnClickListener(new View.OnClickListener()
@@ -82,11 +95,7 @@ public class Review extends AppCompatActivity {
             @Override
             public void onClick (View view)
             {
-                Individual_Movie_Review review = new Individual_Movie_Review(ratingBar.getRating(), nickname.getText().toString());
-
-                review.commentlist.add(nickname.getText().toString() + ": " + ratingBar.getRating());
-                System.out.println(review.commentlist.get(0));
-
+                xml.writeXml(finalTitle, user, rating.toString());
 
             }
         });

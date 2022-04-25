@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root id="root">
+    <movie id="movieTitle">
+        <review id="review">
+            <nickname id="userName">temp</nickname>
+            <rating id="starsAmount">temp</rating>
+        </review>
+    </movie>
+    <movie id="Odotus">
+        <review id="review">
+            <nickname id="userName">odotus-fani</nickname>
+            <rating id="starsAmount">100500</rating>
+        </review>
+    </movie>
+</root>
