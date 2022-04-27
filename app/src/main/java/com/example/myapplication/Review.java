@@ -86,8 +86,8 @@ public class Review extends AppCompatActivity {
 
 
         String finalTitle = title;
-        String user = nickname.getText().toString();
-        Float rating = ratingBar.getRating();
+        //String user = nickname.getText().toString();
+        //Float rating = ratingBar.getRating();
 
 
         rate.setOnClickListener(new View.OnClickListener()
@@ -95,6 +95,10 @@ public class Review extends AppCompatActivity {
             @Override
             public void onClick (View view)
             {
+                String user = nickname.getText().toString();
+                Float rating = ratingBar.getRating();
+
+
                 xml.writeXml(finalTitle, user, rating.toString());
 
             }
