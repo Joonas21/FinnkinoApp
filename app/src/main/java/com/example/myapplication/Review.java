@@ -13,7 +13,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -72,11 +74,10 @@ public class Review extends AppCompatActivity {
 
         HandleXML xml = new HandleXML(context);
 
-        //temp = xml.readXML("movieTitle");
-        //temp = xml.readXML("anotherOne");
 
 
         temp = xml.readXML(title);
+        //System.out.print(temp);
 
         if (temp.size() == 0) { temp.add("No reviews yet."); }
 
@@ -86,8 +87,7 @@ public class Review extends AppCompatActivity {
 
 
         String finalTitle = title;
-        //String user = nickname.getText().toString();
-        //Float rating = ratingBar.getRating();
+
 
 
         rate.setOnClickListener(new View.OnClickListener()
@@ -106,5 +106,6 @@ public class Review extends AppCompatActivity {
 
 
     }
+
 
 }
