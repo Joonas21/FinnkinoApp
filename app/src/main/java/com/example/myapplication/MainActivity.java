@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.content.Context;
 import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.view.View;
@@ -16,7 +15,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 
 import org.w3c.dom.Document;
@@ -35,12 +33,16 @@ import java.text.SimpleDateFormat;
 import java.io.IOException;
 
 
+
+/*  main class of the project  */
+
+
+//@SuppressWarnings("ALL")
 interface MainInterface
 {
     void addSpinner(ArrayList theater_array);
     void addShows(ArrayList arrayList, String startTime, String endTime, String showName);
     void getArray(ArrayList<Theater> arrayList);
-
 }
 
 public class MainActivity extends AppCompatActivity implements MainInterface {
@@ -74,7 +76,6 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
         StrictMode.setThreadPolicy(policy);
         new ReaderXML_Theater(this).execute();
 
-
     }
 
     @Override
@@ -107,6 +108,9 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
         String[] endTime = endingTime.split(deliminator);
         String parsedEndTime = endTime[0] + endTime[1];
 
+
+        /* looping through all the movies to format their data better */
+
         for (int i = 0; i < show_array.size(); i++)
         {
             Show curr = show_array.get(i);
@@ -135,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
                         String startingtime = showStartHours + ":" + showStartMins + ":00";
                         String endingtime = showEndHours + ":" + showEndMins + ":00";
 
-                        tempArr.add(new Show(curr.getTitle(), curr.getID(), startingtime, endingtime, curr.getTheater(), curr.getStatus()));
+                        tempArr.add(new Show(curr.getTitle(), curr.getID(), startingtime, endingtime, curr.getTheater()));
                     }
                 }
             }
@@ -145,49 +149,37 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
         movies.setAdapter(adapter);
         movies.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
+            {
 
-                //System.out.println(i);
-                //Show a = show_array.get(i);
+                /* sending the clicked movie's title to the review page */
+
                 Show a = tempArr.get(i);
-
                 String title = a.getTitle();
-                System.out.println(" . title = " + title);
-
-                /* System.out.println("  ** class of a: " + a.getClass());
-                 System.out.println("  ** class of a.getTitle(): " + title.getClass()); */
 
                 /* https://stackoverflow.com/questions/2091465/how-do-i-pass-data-between-activities-in-android-application */
 
-                //System.out.println(" == before creating new intent");
-
                 Intent intent = new Intent( MainActivity.this, Review.class );
 
-                //System.out.println(" == after creating new intent");
-
                 intent.putExtra("title", title);
-
-                //System.out.println(" == after creating extras");
 
                 startActivity(intent);
             }
         });
-        //movies.setAdapter(adapter);
-
 
     }
 
     public void getShow(View v)
     {
-        //Context context = getApplicationContext();
         String id_single;
         ArrayList<Integer> id = new ArrayList<>();
-        //Toast toast;
         String date = dateInput.getText().toString();
         String startTime;
         String endTime;
-        boolean status = true;
 
+
+        /*  checking to see if the user has input movie start/end times  */
+        /*  if not, using the full day as time  */
 
         if (startTimeInput.getText().toString().matches(""))
         {
@@ -211,7 +203,10 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
         int arrayID = theaterSpinner.getSelectedItemPosition();
         id_single = theater_array.get(arrayID).getID();
 
-        System.out.println("  ** id_single : " + id_single);
+
+        /*  if user has not selected a single theater, but uses          */
+        /*  the "Valitse alue/teatteri" option instead, adding movies    */
+        /*  from all theaters to the listview                            */
 
         if (id_single.equals("1029"))
         {
@@ -227,28 +222,26 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
             id.add(1022);
         }
 
-        /*
-        if(id_single.equals("1029") && !name.matches(""))
-        {
-            status = false;
-        }
-    */
+
+        /*  if user has selected a theater, showing all of that theater's movies  */
 
         if(!id_single.equals("1029"))
         {
             id.add(Integer.parseInt(id_single));
-            status = true;
 
-        } else if (date.matches(""))
+        }
+
+
+        /*  if user has not given a date, showing the current day's movies  */
+
+        else if (date.matches(""))
         {
             Date dateNow = new Date();
             SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
             date = sdf.format(dateNow);
         }
 
-        System.out.println("  xy program at end of getShow()");
-
-        new ReaderXML_Shows(this, date, id, startTime, endTime, status, name).execute();
+        new ReaderXML_Shows(this, date, id, startTime, endTime, name).execute();
     }
 
 
@@ -262,6 +255,9 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
         protected ArrayList<Theater> doInBackground(Void... voids)
         {
             ArrayList<Theater> theater_array = new ArrayList<>();
+
+
+            /*  getting all the theaters from the Finnkino API  */
 
             try
             {
@@ -297,7 +293,6 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
             mainInterface.addSpinner(theater_array);
             mainInterface.getArray(theater_array);
         }
-
     }
 
 
@@ -308,18 +303,16 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
         ArrayList<Integer> id;
         String startTime;
         String endTime;
-        boolean status;
         String showName;
 
 
-        public ReaderXML_Shows(MainInterface mainIF, String d, ArrayList<Integer> i, String s, String e, boolean b, String n)
+        public ReaderXML_Shows(MainInterface mainIF, String d, ArrayList<Integer> i, String s, String e, String n)
         {
             date = d;
             mainInterface = mainIF;
             id = i;
             startTime = s;
             endTime = e;
-            status = b;
             showName = n;
         }
 
@@ -328,39 +321,30 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
         protected ArrayList<Show> doInBackground(Void... voids)
         {
 
-            //System.out.println("  yx program at start of ReaderXML_Shows()");
-
-            for (Integer i : id)
-            {
-                System.out.println(" - element in id: " + i);
-            }
-
-
             ArrayList<Show> show_array = new ArrayList<>();
 
             try
             {
+
+                /*  getting all the shows matching the theater IDs from the Finnkino API  */
+
                 for (Integer id_single : id)
                 {
-                    System.out.println("  !! at start of for-loop");
 
                     String urlString = "https://www.finnkino.fi/xml/Schedule/?area=" + id_single + "&dt=" + date;
-                    //String urlString = "https://www.finnkino.fi/xml/Schedule/?area=1015&dt=" + date;
+
                     DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
                     Document doc = builder.parse(urlString);
                     doc.getDocumentElement().normalize();
 
-                    System.out.println("  -- searching for URL: " + urlString);
-
                     NodeList nList = doc.getElementsByTagName("Show");
 
-                    System.out.println("  << nodeList length :" + nList.getLength());
+
+                    /*  saving the found shows into an array and returning  */
 
                     for (int j = 0; j < nList.getLength(); j++)
                     {
                         Node node = nList.item(j);
-
-                        //System.out.println("  ¤¤ current node : " + node);
 
                         if (node.getNodeType() == Node.ELEMENT_NODE)
                         {
@@ -373,8 +357,8 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
                             String fullEndDate = (element.getElementsByTagName("dttmShowEnd").item(0).getTextContent());
                             String theater = (element.getElementsByTagName("Theatre").item(0).getTextContent());
                             String[] endTime = fullEndDate.split(deliminator);
-                            //System.out.println(" :: DEBUG, title = " + title);
-                            show_array.add(new Show(title, id, startTime[1], endTime[1], theater, status));
+
+                            show_array.add(new Show(title, id, startTime[1], endTime[1], theater));
                         }
                     }
                 }
@@ -391,6 +375,5 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
         {
             mainInterface.addShows(show_array, startTime, endTime, showName);
         }
-
     }
 }

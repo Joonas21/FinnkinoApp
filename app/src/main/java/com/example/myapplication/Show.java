@@ -1,5 +1,12 @@
 package com.example.myapplication;
 
+
+
+
+/*  class for a single show running in theaters  */
+
+
+//@SuppressWarnings("ALL")
 public class Show
 {
     private String title;
@@ -9,16 +16,15 @@ public class Show
     private String endTime;
     private String[] end_time;
     private String theater;
-    private boolean status;
 
-    public Show (String t, String i, String s, String e, String h, boolean st)
+
+    public Show (String t, String i, String s, String e, String th)
     {
         title = t;
         id = i;
         startTime = s;
         endTime = e;
-        theater = t;
-        status = st;
+        theater = th;
 
         String deliminator = "[:]";
         start_time = s.split(deliminator);
@@ -29,16 +35,13 @@ public class Show
     }
 
 
+    /* https://stackoverflow.com/questions/47776826/item-in-listview-showing-package-name */
+    // overriding toString() method for some reason idk but it works
+
     @Override
     public String toString()
     {
-        if (status == false)
-        {
-            return (/*theater + "\n" + */title + ":\n" + startTime + " - " + endTime);
-        } else
-        {
-            return (/*theater + "\n" + */title + ":\n" + startTime + " - " + endTime);
-        }
+        return (title + ":\n" + startTime + " - " + endTime);
     }
 
     public String getTitle() { return title; }
@@ -46,6 +49,5 @@ public class Show
     public String getStartTime() { return startTime; }
     public String getEndTime() { return endTime; }
     public String getTheater() { return theater; }
-    public Boolean getStatus() { return status; }
 
 }

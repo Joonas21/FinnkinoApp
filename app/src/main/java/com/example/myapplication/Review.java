@@ -3,7 +3,6 @@ package com.example.myapplication;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,82 +12,85 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Scanner;
 
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
 
+
+
+/*  class for showing all of a current movie's reviews
+ *  as well as writing new ones under the current one   */
+
+
+//@SuppressWarnings("ALL")
 public class Review extends AppCompatActivity {
 
     Button rate;
     RatingBar ratingBar;
     EditText nickname;
-    EditText dateOfRating;
-    EditText review;
     ListView reviewsList;
     TextView movie;
 
-    ArrayList<Individual_Movie_Review> l = new ArrayList<>();
 
     Context context;
 
-    public Review() {
-    }
+    public Review() { }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.rating_layout);
-
-
-        Bundle extras = getIntent().getExtras();
 
 
         rate = (Button) findViewById(R.id.rate);
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
         nickname = (EditText) findViewById(R.id.nickname);
-        dateOfRating = (EditText) findViewById(R.id.dateOfRating);
-        review = (EditText) findViewById(R.id.review);
         reviewsList = (ListView) findViewById(R.id.reviewsList);
         movie = (TextView) findViewById(R.id.movie);
 
+
+
+        /* the movie title is received as an extra, here's handling that */
+
+        Bundle extras = getIntent().getExtras();
         String title = "";
 
         if (extras != null)
         {
             title  = title + extras.getString("title");
-            System.out.println("  == extras, title: " + extras.getString("title"));
             movie.setText(extras.getString("title"));
-        } else
-        {
-            System.out.println(" == ERR: empty extras");
-        }
+
+        } else { System.out.println(" == ERR: empty extras"); }
+
+
+
+        /* calling the handleCSV class and reading/writing csv file */
 
         context = getApplicationContext();
+        HandleCSV csv = new HandleCSV(context);
+
+
+        /* searching the csv file to look for anything under the current movie */
 
         ArrayList temp;
+        temp = csv.readCSV(title);
 
 
-        HandleXML xml = new HandleXML(context);
-
-
-
-        temp = xml.readXML(title);
-        //System.out.print(temp);
+        /* if no reviews were found for the current movie, adding to the array 'no reviews' */
 
         if (temp.size() == 0) { temp.add("No reviews yet."); }
 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, temp);
 
+        /* adding the pre-existing movie reviews to the review list */
+
+        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.list_text, temp);
         reviewsList.setAdapter(adapter);
+
 
 
         String finalTitle = title;
 
 
+        /* when clicked, writing the user's inputted name and review to database */
 
         rate.setOnClickListener(new View.OnClickListener()
         {
@@ -98,14 +100,9 @@ public class Review extends AppCompatActivity {
                 String user = nickname.getText().toString();
                 Float rating = ratingBar.getRating();
 
-
-                xml.writeXml(finalTitle, user, rating.toString());
+                csv.writeCSV(finalTitle, user, rating.toString());
 
             }
         });
-
-
     }
-
-
 }
